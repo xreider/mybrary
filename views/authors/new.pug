@@ -1,0 +1,8 @@
+extends ../layouts/main 
+
+block content
+    h2 New Author
+    form(action='/authors' method='POST')
+        include _forms_fields
+        a(href="/authors") Cancel
+        button(type='submit') Create

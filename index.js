@@ -5,12 +5,16 @@ dotenv.config();
 const path = require('path'); 
 const mongoose = require('mongoose'); 
 const indexRouter = require('./routes/index');
+const authorRouter = require('./routes/authors');
+const bodyParser = require('body-parser');
 
 app.set('view engine', 'pug');
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
- 
+app.use(bodyParser.urlencoded({limit: '10mb', extended: false})); 
 app.use('/', indexRouter)
+app.use('/authors', authorRouter)
+
 
 const PORT = process.env.PORT || 1000;
 async function start() { 
