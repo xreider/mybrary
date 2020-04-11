@@ -4,16 +4,16 @@ const dotenv = require('dotenv');
 dotenv.config();
 const path = require('path'); 
 const mongoose = require('mongoose'); 
-const indexRouter = require('./routes/index');
-const authorRouter = require('./routes/authors');
 const bodyParser = require('body-parser');
 
-app.set('view engine', 'pug');
+const indexRouter = require('./routes/index');
+const authorRouter = require('./routes/authors');
+const bookRouter = require('./routes/books');
 
+app.set('view engine', 'pug'); 
+app.set('views', __dirname + '/views')
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false})); 
-app.use('/', indexRouter)
-app.use('/authors', authorRouter)
 
 
 const PORT = process.env.PORT || 1000;
@@ -27,4 +27,8 @@ async function start() {
     } catch(e) { console.log(e) } 
   }
   
+app.use('/', indexRouter)
+app.use('/authors', authorRouter)
+app.use('/books', bookRouter)
+
   start();

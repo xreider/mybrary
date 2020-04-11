@@ -1,0 +1,19 @@
+extends ../layouts/main 
+
+block content
+    h2 Search Books
+    form(action='/books' method='GET')
+        div
+            label Title
+            input(type="text" name='title' value=searchOptions.title)
+        div
+            label Published After
+            input(type="text" name='publishedAfter' value=searchOptions.publishedAfter)
+        div
+            label Published Before
+            input(type="text" name='publishedBefore' value=searchOptions.publishedBefore)
+        button(type='submit') Search
+    div
+        each book in books
+            img(height=150 with=100 src=book.coverImagePath)
+            .book= book.title
