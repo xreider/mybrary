@@ -6,7 +6,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const uploadPath = path.join('public', Book.coverImageBasePath);
-const imageMimeTypes = ['image/jpeg','image/png','image/gif'];
+const imageMimeTypes = ['image/jpeg','image/jpg','image/png','image/gif'];
 const storage = multer.diskStorage({
     destination(req, file, cb) {
         // console.log('smth file=>', file);
