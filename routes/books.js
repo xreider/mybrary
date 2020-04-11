@@ -33,7 +33,6 @@ router.get('/', async (req, res) => {
             searchOptions: req.query
         })
     } catch (error) {
-        console.log(error);
         res.redirect('/');
     }
 })
