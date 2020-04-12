@@ -1,4 +1,8 @@
 extends layouts/main 
 
 block content
-    | hi    
+    h2 Recently Added
+    div
+        each book in books
+            img(height=150 with=100 src=book.coverImagePath)
+            .book= book.title

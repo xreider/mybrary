@@ -26,8 +26,18 @@ const upload = multer({
 
 // All Books Route
 router.get('/', async (req, res) => {
+    let query = Book.find()
+    if (req.query.title != null && req.query.title != '' && req.query.title != ' ') {
+        query = query.regex('title', new RegExp(req.query.title, 'i'))
+    }
+    if (req.query.publishedBefore != null && req.query.publishedBefore != '' && req.query.publishedBefore != ' ') {
+        query = query.lte('publishDate', req.query.publishedBefore)
+    } 
+    if (req.query.publishedAfter != null && req.query.publishedAfter != '' && req.query.publishedAfter != ' ') {
+        query = query.gte('publishDate', req.query.publishedAfter)
+    }
     try {
-        const books = await Book.find({})
+        const books = await query.exec()
         res.render('books/index', {
             books,
             searchOptions: req.query
@@ -43,8 +53,7 @@ router.get('/new', async (req, res) => {
 })
 
 // Create Book Route
-router.post('/', upload.single('cover'), async (req, res) => {
- console.log(req.file)
+router.post('/', upload.single('cover'), async (req, res) => { 
     const fileName = req.file != null ? req.file.filename : null;
     const book = new Book({
         title: req.body.title,

@@ -8,10 +8,10 @@ block content
             input(type="text" name='title' value=searchOptions.title)
         div
             label Published After
-            input(type="text" name='publishedAfter' value=searchOptions.publishedAfter)
+            input(type="date" name='publishedAfter' value=searchOptions.publishedAfter)
         div
             label Published Before
-            input(type="text" name='publishedBefore' value=searchOptions.publishedBefore)
+            input(type="date" name='publishedBefore' value=searchOptions.publishedBefore)
         button(type='submit') Search
     div
         each book in books
