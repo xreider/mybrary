@@ -5,6 +5,7 @@ dotenv.config();
 const path = require('path'); 
 const mongoose = require('mongoose'); 
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');
 const authorRouter = require('./routes/authors');
@@ -12,6 +13,7 @@ const bookRouter = require('./routes/books');
 
 app.set('view engine', 'pug'); 
 app.set('views', __dirname + '/views')
+app.use(methodOverride('_method'))
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false})); 
 

@@ -1,0 +1,8 @@
+extends ../layouts/main 
+
+block content
+    h2 Edit Author
+    form(action=`/authors/${author.id}?_method=PUT` method='POST')
+        include _forms_fields
+        a(href=`/authors/${author.id}`) Cancel
+        button(type='submit') Update

@@ -1,4 +1,5 @@
 extends ../layouts/main 
+include ../mixins/deleteForm
 
 block content
     h2 Search Authors
@@ -9,3 +10,7 @@ block content
     br
     each author in authors
         .author= author.name
+        a(href=`/authors/${author.id}`) View
+        a(href=`/authors/${author.id}/edit`) Edit
+        +deleteForm(`/authors/${author.id}?_method=DELETE`)
+        
