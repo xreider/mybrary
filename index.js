@@ -7,9 +7,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
+
+
 const indexRouter = require('./routes/index');
 const authorRouter = require('./routes/authors');
 const bookRouter = require('./routes/books');
+
+
 
 app.set('view engine', 'pug'); 
 app.set('views', __dirname + '/views')
@@ -32,5 +36,7 @@ async function start() {
 app.use('/', indexRouter)
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
-
+app.use(function (req, res, next) {
+  res.status(404).render('404')
+})
   start();

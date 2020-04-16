@@ -4,5 +4,6 @@ block content
     h2 Recently Added
     div
         each book in books
-            img(height=150 with=100 src=book.coverImagePath)
-            .book= book.title
+            a(href=`/books/${book.id}`)
+                img(height=150 with=100 src=book.coverImagePath)
+            a.book(href=`/books/${book.id}`)= book.title

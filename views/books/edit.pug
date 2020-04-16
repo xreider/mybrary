@@ -1,0 +1,8 @@
+extends ../layouts/main 
+
+block content
+    h2 Edit Book
+    form(action=`/books/${book.id}?_method=PUT` method='POST')
+        include _forms_fields
+        a(href="/books") Cancel
+        button(type='submit') Update
