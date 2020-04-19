@@ -1,4 +1,5 @@
 extends ../layouts/main 
+include ../mixins/bookCard
 
 block content
     h2 Search Books
@@ -15,6 +16,4 @@ block content
         button(type='submit') Search
     div
         each book in books
-            a(href=`/books/${book.id}`)
-                img(height=150 with=100 src=book.coverImagePath)
-            a.book(href=`/books/${book.id}`)= book.title
+            +bookCard(book)

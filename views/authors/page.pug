@@ -1,15 +1,14 @@
 extends ../layouts/main 
 include ../mixins/deleteForm
+include ../mixins/bookCard
 
 block content
     h2= author.name
 
-    a(href=`/authors/${author.id}/edit`) Edit
+    a.btn.btn_primary(href=`/authors/${author.id}/edit`) Edit
     +deleteForm(`/authors/${author.id}?_method=DELETE`)
 
     if booksByAuthor.length > 0
         h2 Books By Author
         each book in booksByAuthor
-            a(href=`/books/${book.id}`)
-                img(height=150 with=100 src=book.coverImagePath)
-            a.book(href=`/books/${book.id}`)= book.title
+            +bookCard(book)

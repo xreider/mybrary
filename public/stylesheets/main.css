@@ -1,0 +1,30 @@
+@import 'variables.css';
+@import 'header.css';
+@import 'buttons.css';
+
+:root {
+    font-size: medium;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, var(--color-background-dark), var(--color-background-light));
+
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+.inner_container {
+    margin: 0 2rem;
+}
+
+h2 {
+    font-size:  2rem; 
+}

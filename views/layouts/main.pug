@@ -16,8 +16,10 @@ html
         script(src="https://unpkg.com/filepond/dist/filepond.js" defer)
         script(src="/public/js/fileUpload.js" defer)
     body
-        include ../partials/header
-        include ../partials/errorMessage
-        main
-            block content
-        include ../partials/footer
+        .container
+            include ../partials/header
+            .inner_container
+                include ../partials/errorMessage
+                main
+                    block content
+            include ../partials/footer
