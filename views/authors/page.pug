@@ -4,9 +4,9 @@ include ../mixins/bookCard
 
 block content
     h2= author.name
-
-    a.btn.btn_primary(href=`/authors/${author.id}/edit`) Edit
-    +deleteForm(`/authors/${author.id}?_method=DELETE`)
+    .btn_row
+        a.btn.btn_primary(href=`/authors/${author.id}/edit`) Edit
+        +deleteForm(`/authors/${author.id}?_method=DELETE`)
 
     if booksByAuthor.length > 0
         h2 Books By Author

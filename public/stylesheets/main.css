@@ -1,6 +1,7 @@
 @import 'variables.css';
 @import 'header.css';
 @import 'buttons.css';
+@import 'form.css';
 
 :root {
     font-size: medium;
@@ -11,7 +12,7 @@
 }
 
 body {
-    background: linear-gradient(to right, var(--color-background-dark), var(--color-background-light));
+    background: linear-gradient(to right, rgb(108, 89, 255), rgb(127, 74, 255));
 
 }
 

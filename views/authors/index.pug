@@ -4,13 +4,17 @@ include ../mixins/deleteForm
 block content
     h2 Search Authors
     form(action='/authors' method='GET')
-        label Name
-        input(type="text" name='name' value=searchOptions.name)
-        button(type='submit') Search
+        .form_row
+            .form_item
+                label Name
+                input(type="text" name='name' value=searchOptions.name)
+        
+        .form_row.form_row_end
+            button.btn.btn_primary(type='submit') Search
     br
     each author in authors
         .author= author.name
-        .btn-row
+        .btn_row
             a.btn.btn_primary(href=`/authors/${author.id}`) View
             a.btn.btn_primary(href=`/authors/${author.id}/edit`) Edit
             +deleteForm(`/authors/${author.id}?_method=DELETE`)

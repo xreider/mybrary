@@ -20,12 +20,12 @@
     text-align: center;
 }
 
-.btn-row {
+.btn_row {
     display: flex;
     align-items: flex-start;
 }
 
-.btn-row > *:not(:first-child) {
+.btn_row > *:not(:first-child) {
     margin-left: 1rem;
 }
 
