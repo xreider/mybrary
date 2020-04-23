@@ -1,8 +1,7 @@
 extends layouts/main 
-include mixins/bookCard
+include mixins/bookGrid
 
 block content
     h2 Recently Added
     div
-        each book in books
-            +bookCard(book)
+        +bookGrid(books, true)

@@ -1,5 +1,5 @@
 extends ../layouts/main 
-include ../mixins/bookCard
+include ../mixins/bookGrid
 
 block content
     h2 Search Books
@@ -18,5 +18,4 @@ block content
         .form_row.form_row_end.btn_row
             button.btn.btn_primary(type='submit') Search
     div
-        each book in books
-            +bookCard(book)
+        +bookGrid(books)

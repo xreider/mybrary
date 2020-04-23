@@ -13,9 +13,10 @@ block content
             button.btn.btn_primary(type='submit') Search
     br
     each author in authors
-        .author= author.name
-        .btn_row
-            a.btn.btn_primary(href=`/authors/${author.id}`) View
-            a.btn.btn_primary(href=`/authors/${author.id}/edit`) Edit
-            +deleteForm(`/authors/${author.id}?_method=DELETE`)
+        .author_row
+            .author_name= author.name
+            .btn_row
+                a.btn.btn_primary(href=`/authors/${author.id}`) View
+                a.btn.btn_primary(href=`/authors/${author.id}/edit`) Edit
+                +deleteForm(`/authors/${author.id}?_method=DELETE`)
         

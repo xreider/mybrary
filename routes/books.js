@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Book = require('../models/book')
 const Author = require('../models/author')
+const auth = require('../middleware/auth')
 // const path = require('path');
 // const fs = require('fs');
 // const uploadPath = path.join('public', Book.coverImageBasePath);
@@ -48,12 +49,12 @@ router.get('/', async (req, res) => {
 })
 
 // New Book
-router.get('/new', async (req, res) => {
+router.get('/new', auth, async (req, res) => {
     renderNewPage(res, new Book())
 })
 
 // Create Book Route
-router.post('/', async (req, res) => { 
+router.post('/', auth, async (req, res) => { 
     // const fileName = req.file != null ? req.file.filename : null;
     const book = new Book({
         title: req.body.title,
@@ -84,7 +85,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', auth, async (req, res) => {
     try {
         const book = await Book.findById(req.params.id);
         renderEditPage(res, book) 
@@ -100,7 +101,7 @@ router.get('/:id/edit', async (req, res) => {
 //     })
 // }
 
-router.put('/:id', async (req, res) => { 
+router.put('/:id', auth, async (req, res) => { 
  let book 
 
     try {
@@ -125,7 +126,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     let book
     try {
         book = await Book.findById(req.params.id)

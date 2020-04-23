@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Author = require('../models/author')
 const Book = require('../models/book')
+const auth = require('../middleware/auth')
 
 // All Authors
 router.get('/', async (req, res) => {
@@ -19,12 +20,12 @@ router.get('/', async (req, res) => {
 })
 
 // New Author
-router.get('/new', (req, res) => {
+router.get('/new', auth, (req, res) => {
     res.render('authors/new', {author: new Author() });
 })
 
 // Create Author
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     const author = new Author({
         name: req.body.name
     })
@@ -50,7 +51,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', auth, async (req, res) => {
     try {
         const author = await Author.findById(req.params.id)
         res.render('authors/edit', { author })
@@ -60,7 +61,7 @@ router.get('/:id/edit', async (req, res) => {
     }
 })
 
-router.put('/:id', async (req, res) => { 
+router.put('/:id', auth, async (req, res) => { 
     let author
     try {
         author = await Author.findById(req.params.id)
@@ -78,7 +79,7 @@ router.put('/:id', async (req, res) => {
     } 
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     let author
     try {
         author = await Author.findById(req.params.id) 

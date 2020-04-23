@@ -1,0 +1,9 @@
+mixin bookGrid(books, large = false)
+    - var bookCoverClass = large ? 'book_cover_large' : 'book_cover'
+    - var bookGridClass = large ? 'book_grid_large' : ''
+    div(class=['book_grid', bookGridClass])
+        each book in books
+            div(class=['book_cover', bookCoverClass])
+                a(href=`/books/${book.id}`)
+                    img(src=book.coverImagePath)
+                a.book(href=`/books/${book.id}`)= book.title 

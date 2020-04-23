@@ -4,9 +4,19 @@ header
         ul
             li.header_link
                 a(href="/authors") Authors
-            li.header_link
-                a(href="/authors/new") Add Authors
+            if isAuth
+                li.header_link
+                    a(href="/authors/new") Add Authors
             li.header_link
                 a(href="/books") Books
-            li.header_link
-                a(href="/books/new") Add book
+            if isAuth
+                li.header_link
+                    a(href="/books/new") Add book
+            if !isAuth
+                li.header_link
+                    a(href="/user/signin") Signin
+                li.header_link
+                    a(href="/user/signup") Signup
+            if isAuth
+                li.header_link
+                    a(href="/user/logout") Log out

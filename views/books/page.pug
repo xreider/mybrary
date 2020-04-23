@@ -3,16 +3,24 @@ include ../mixins/deleteForm
 
 block content
     h2= book.title
-    img(height=150 width=100 src=book.coverImagePath)
-    div Author: 
-        a(href=`/authors/${book.author.id}`)= book.author.name
-    div Publish Date: 
-        = book.publishDate.toDateString()
-    div Page Count: 
-        = book.pageCount
-    div Description: 
-        = book.description
+    .book_details
+        div
+            img.book_cover(src=book.coverImagePath)
+            .book_details_btn_grid
+                a.btn.btn_primary(href=`/books/${book.id}/edit`) Edit
+                +deleteForm(`/books/${book.id}?_method=DELETE`)
+                a.btn.btn_primary.book_details_author_button(href=`/authors/${book.author.id}`) View author
 
-    a(href=`/books/${book.id}/edit`) Edit
-    +deleteForm(`/books/${book.id}?_method=DELETE`)
-    a(href=`/authors/${book.author.id}`) View author
+        .book_details_grid
+            .book_details_label Author: 
+            .book_details_content
+                a(href=`/authors/${book.author.id}`)= book.author.name
+            .book_details_label Publish Date: 
+            .book_details_content
+                = book.publishDate.toDateString()
+            .book_details_label Page Count: 
+            .book_details_content
+                = book.pageCount
+            .book_details_label Description: 
+            .book_details_content
+                = book.description

@@ -1,6 +1,6 @@
 extends ../layouts/main 
 include ../mixins/deleteForm
-include ../mixins/bookCard
+include ../mixins/bookGrid
 
 block content
     h2= author.name
@@ -10,5 +10,4 @@ block content
 
     if booksByAuthor.length > 0
         h2 Books By Author
-        each book in booksByAuthor
-            +bookCard(book)
+        +bookGrid(booksByAuthor, true)

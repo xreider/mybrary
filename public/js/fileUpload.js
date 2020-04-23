@@ -1,13 +1,28 @@
-FilePond.registerPlugin(
-    FilePondPluginFileEncode,
-    FilePondPluginImageResize,
-    FilePondPluginImagePreview,
-)
+const rootStyles = window.getComputedStyle(document.documentElement)
 
-FilePond.setOptions({
-    styleItemPanelAspectRatio: 150 / 100,
-    imageResizeTargetWidth: 100,
-    imageResizeTargetHeight: 150
-})
+if (rootStyles.getPropertyValue('--book-cover-width-large') != null && rootStyles.getPropertyValue('--book-cover-width-large') != '') {
+    ready()
+} else {
+    document.getElementById('main_css').addEventListener('load', ready)
+}
 
-FilePond.parse(document.body);
+function ready() {
+    const coverWidth = parseFloat(rootStyles.getPropertyValue('--book-cover-width-large'));
+    const coverRatio = parseFloat(rootStyles.getPropertyValue('--book-cover-aspect-ratio'));
+    const coverHeight = coverWidth / coverRatio 
+
+    FilePond.registerPlugin(
+        FilePondPluginFileEncode,
+        FilePondPluginImageResize,
+        FilePondPluginImagePreview,
+    )
+    
+    FilePond.setOptions({
+        styleItemPanelAspectRatio: 1 / coverRatio,
+        imageResizeTargetWidth: coverWidth,
+        imageResizeTargetHeight: coverHeight
+    })
+    
+    FilePond.parse(document.body);
+}
+
